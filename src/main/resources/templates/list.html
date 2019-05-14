@@ -6,9 +6,23 @@
 </head>
 <body>
     <a href="/add">Add a To Do item</a>
-    <div th:each="todo : ${todos}">
-        <h4 th:inline="text">[[${todo.taskName}]], due [[${todo.dueDate}]]</h4>
-        <p th:text="${todo.priority}"></p>
-    </div>
+    <table>
+        <tr>
+            <th>Task Name</th>
+            <th>Task Due Date</th>
+            <th>Priority</th>
+            <td>Actions</td>
+        </tr>
+        <tr th:each="todo : ${todos}">
+            <td th:text="${todo.taskName}"></td>
+            <td th:text="${todo.dueDate}"></td>
+            <td th:text="${todo.priority}"></td>
+            <td>
+                <a th:href="@{/update/{id}(id=${todo.id})}">Update</a>
+                <a th:href="@{/details/{id}(id=${todo.id})}">Details</a>
+                <a th:href="@{/delete/{id}(id=${todo.id})}">Delete</a>
+            </td>
+        </tr>
+    </table>
 </body>
 </html>
